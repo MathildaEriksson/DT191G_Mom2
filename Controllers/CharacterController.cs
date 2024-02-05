@@ -6,18 +6,22 @@ namespace DT191G_Mom2.Controllers;
 
 public class CharacterController : Controller
 {
-    [Route("karaktarer")]
+    [Route("karaktarer/alla")]
     public IActionResult Index()
     {
         //Läs in Jsonfil
         string jsonStr = System.IO.File.ReadAllText("characters.json");
-        var characters = JsonSerializer.Deserialize<List<CharacterModel>>(jsonStr);
+        var characters = JsonSerializer.Deserialize<List<CharacterModel>>(jsonStr) ?? new List<CharacterModel>();
+        int characterCount = characters.Count;
+
+        ViewBag.CharacterCount = characterCount;
         return View(characters); // Parameterpassning med en vy-modell i grunden
     }
 
+    [Route("karaktarer/skapa")]
     public IActionResult Create()
     {
-        // Skicka en lista med klasser
+        // Skicka med listor med klasser, raser och bakgrunder
         ViewBag.Classes = new List<string> {
             "Barbarian",
             "Bard",
@@ -62,6 +66,7 @@ public class CharacterController : Controller
     }
 
     [HttpPost]
+    [Route("karaktarer/skapa")]
     public IActionResult Create(CharacterModel model)
     {
         //Validera input
