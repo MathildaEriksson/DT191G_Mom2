@@ -4,7 +4,7 @@
     ViewData["Title"] = "Skapa karaktär";
 }
 
-<h1 class="text-3xl font-bold tracking-tight text-gray-900 mb-4">Skapa karaktär</h1>
+<h1 class="text-3xl font-bold tracking-tight text-gray-900 mb-4">@ViewData["title"]</h1>
 
 <form asp-action="Create" asp-controller="Character" method="post" class="space-y-4">
     <div asp-validation-summary="ModelOnly"></div>
@@ -12,7 +12,8 @@
         <label asp-for="Name" class="block text-sm font-medium text-gray-700"></label>
         <input asp-for="Name"
             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
-        <span asp-validation-for="Name"></span>
+        <span asp-validation-for="Name" class="mt-2 text-sm text-red-700"></span>
+        
     </div>
     <div>
         <label asp-for="Class" class="block text-sm font-medium text-gray-700"></label>
@@ -24,7 +25,7 @@
                 <option value="@c">@c</option>
             }
         </select>
-        <span asp-validation-for="Class"></span>
+        <span asp-validation-for="Class" class="mt-2 text-sm text-red-700"></span>
     </div>
     <div>
         <label asp-for="Race" class="block text-sm font-medium text-gray-700"></label>
@@ -36,7 +37,7 @@
                 <option value="@r">@r</option>
             }
         </select>
-        <span asp-validation-for="Race"></span>
+        <span asp-validation-for="Race" class="mt-2 text-sm text-red-700"></span>
     </div>
     <div>
         <label asp-for="Background" class="block text-sm font-medium text-gray-700"></label>
@@ -48,55 +49,25 @@
                 <option value="@b">@b</option>
             }
         </select>
-        <span asp-validation-for="Background"></span>
+        <span asp-validation-for="Background" class="mt-2 text-sm text-red-700"></span>
     </div>
-    <div class="mt-4">
-        <span class="block text-sm font-medium text-gray-700">Alignment</span>
-        <div class="mt-2 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6">
+<div class="mt-4">
+    <span class="block text-sm font-medium text-gray-700">Alignment</span>
+    <div class="mt-2 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6">
+        @foreach (var alignment in new[] { "Lawful Good", "Neutral Good", "Chaotic Good", "Lawful Evil", "Neutral Evil", "Chaotic Evil" })
+        {
             <div>
                 <label class="inline-flex items-center">
-                    <input type="radio" asp-for="Alignment" value="Lawful Good"
-                        class="form-radio h-4 w-4 text-indigo-600">
-                    <span class="ml-2 text-sm text-gray-600">Lawful Good</span>
+                    <input type="radio" asp-for="Alignment" value="@alignment"
+                           class="form-radio h-4 w-4 text-indigo-600"
+                           id="@($"Alignment-{alignment.Replace(" ", "-")}")"> @* för att få olika idn på de olka radioknapparna *@
+                    <span class="ml-2 text-sm text-gray-600">@alignment</span>
                 </label>
             </div>
-            <div>
-                <label class="inline-flex items-center">
-                    <input type="radio" asp-for="Alignment" value="Neutral Good"
-                        class="form-radio h-4 w-4 text-indigo-600">
-                    <span class="ml-2 text-sm text-gray-600">Neutral Good</span>
-                </label>
-            </div>
-            <div>
-                <label class="inline-flex items-center">
-                    <input type="radio" asp-for="Alignment" value="Chaotic Good"
-                        class="form-radio h-4 w-4 text-indigo-600">
-                    <span class="ml-2 text-sm text-gray-600">Chaotic Good</span>
-                </label>
-            </div>
-            <div>
-                <label class="inline-flex items-center">
-                    <input type="radio" asp-for="Alignment" value="Lawful Evil"
-                        class="form-radio h-4 w-4 text-indigo-600">
-                    <span class="ml-2 text-sm text-gray-600">Lawful Evil</span>
-                </label>
-            </div>
-            <div>
-                <label class="inline-flex items-center">
-                    <input type="radio" asp-for="Alignment" value="Neutral Evil"
-                        class="form-radio h-4 w-4 text-indigo-600">
-                    <span class="ml-2 text-sm text-gray-600">Neutral Evil</span>
-                </label>
-            </div>
-            <div>
-                <label class="inline-flex items-center">
-                    <input type="radio" asp-for="Alignment" value="Chaotic Evil"
-                        class="form-radio h-4 w-4 text-indigo-600">
-                    <span class="ml-2 text-sm text-gray-600">Chaotic Evil</span>
-                </label>
-            </div>
-        </div>
-        <span asp-validation-for="Alignment"></span>
+        }
     </div>
-    <button type="submit" class="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-md">Spara</button>
+    <span asp-validation-for="Alignment" class="mt-2 text-sm text-red-700"></span>
+</div>
+
+    <button type="submit" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-md">Spara</button>
 </form>

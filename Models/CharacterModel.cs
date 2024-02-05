@@ -6,6 +6,7 @@ public class CharacterModel
 {
     //Properties
     [Required(ErrorMessage = "Ange ett namn")]
+    [StringLength(20, MinimumLength = 2, ErrorMessage = "Namnet måste vara mellan 2 och 20 tecken långt")]
     [Display(Name="Namn")]
     public string? Name { get; set; }
 

@@ -2,7 +2,7 @@
 @{
     ViewData["title"] = "Alla karaktärer";
 }
-<h1 class="text-3xl font-bold tracking-tight text-gray-900 mb-4">Index Karaktärer</h1>
+<h1 class="text-3xl font-bold tracking-tight text-gray-900 mb-4">@ViewData["title"]</h1>
 <partial name="_CharacterCount" model="@(ViewBag.CharacterCount as int? ?? 0)" />
 
 <div class="pt-6 px-4 sm:px-6 lg:px-8">

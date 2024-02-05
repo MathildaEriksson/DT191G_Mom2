@@ -2,6 +2,6 @@
     ViewData["title"] = "Startsida";
 }
 
-<h1 class="text-3xl font-bold tracking-tight text-gray-900 mb-4">Index startsida</h1>
-<p class="mt-2 text-base text-gray-700">Denna sida har skapats av Mathilda Eriksson för uppgfiten moment 2 i kursen Webbutveckling med .NET.</p>
+<h1 class="text-3xl font-bold tracking-tight text-gray-900 mb-4">@ViewData["title"]</h1>
+<p class="mt-2 text-base text-gray-700">Denna sida har skapats av Mathilda Eriksson för moment 2 i kursen Webbutveckling med .NET.</p>
 <partial name="_CharacterCount" model="@(ViewBag.CharacterCount as int? ?? 0)" />
