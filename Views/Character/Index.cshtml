@@ -1,0 +1,17 @@
+@model List<DT191G_Mom2.Models.CharacterModel>
+@{
+    ViewData["title"] = "Alla karaktärer";
+}
+<h1 class="text-3xl font-bold tracking-tight text-gray-900 mb-4">Index Karaktärer</h1>
+
+<p>Sparade karaktärer:</p>
+
+<ul>
+    @foreach(var character in Model) {
+        <li>@character.Name</li>
+        <li>@character.Class</li>
+        <li>@character.Race</li>
+        <li>@character.Background</li>
+        <li>@character.Alignment</li>
+    }
+</ul>
